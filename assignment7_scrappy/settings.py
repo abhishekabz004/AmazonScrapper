@@ -14,8 +14,7 @@ BOT_NAME = 'assignment7_scrappy'
 SPIDER_MODULES = ['assignment7_scrappy.spiders']
 NEWSPIDER_MODULE = 'assignment7_scrappy.spiders'
 ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
-IMAGES_STORE = '/home/abhishek/project/assignment7_scrappy/imgDir/'
-
+IMAGES_STORE = 'images'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'assignment7_scrappy (+http://www.yourdomain.com)'
 

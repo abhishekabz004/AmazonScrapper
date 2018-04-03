@@ -4,6 +4,8 @@ import scrapy
 from scrapy.contrib.spiders import Rule,CrawlSpider
 from scrapy.contrib.linkextractors import LinkExtractor 
 from assignment7_scrappy.items import Assignment7ScrappyItem
+from ..items import FlipkartTshirtsMenItem
+
 def staticNum():
     staticNum.x += 1
     return staticNum.x
@@ -54,3 +56,12 @@ class TshirtsspiderSpider(scrapy.Spider):
     		next_page = next_page.css('a::attr(href)').extract_first()
     		if next_page is not None:
     			yield response.follow(next_page, callback=self.parse)
+
+
+class ImageCrawlingSpider(scrapy.Spider):
+    name = "amazon_men_tshirts"
+    start_urls = ['https://www.amazon.in/T-Shirts-Polos-Men/s?ie=UTF8&page=1&rh=n%3A1968120031']
+    
+    def parse(self, response):
+        image_url = response.css('img.s-access-image.cfMarker::attr(src)').extract_first().encode('utf-8')
+        yield FlipkartTshirtsMenItem(image_urls=[image_url])
