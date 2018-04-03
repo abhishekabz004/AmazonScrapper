@@ -14,7 +14,7 @@ BOT_NAME = 'assignment7_scrappy'
 SPIDER_MODULES = ['assignment7_scrappy.spiders']
 NEWSPIDER_MODULE = 'assignment7_scrappy.spiders'
 ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
-IMAGES_STORE = '/home/abhishek/project/assignment7_scrappy/imgDir/'
+IMAGES_STORE = 'imgDir'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'assignment7_scrappy (+http://www.yourdomain.com)'
@@ -89,3 +89,4 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+

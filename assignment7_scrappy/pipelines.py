@@ -22,3 +22,4 @@ class Assignment7ScrappyPipeline(object):
 			raise DropItem("Item contains no images")
 		item['image_paths'] = image_paths
 		return item
+
