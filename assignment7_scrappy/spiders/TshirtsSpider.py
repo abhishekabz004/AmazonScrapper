@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-from scrapy.contrib.spiders import Rule,CrawlSpider
-from scrapy.contrib.linkextractors import LinkExtractor 
+#from scrapy.contrib.spiders import Rule,CrawlSpider
+#from scrapy.contrib.linkextractors import LinkExtractor
 from ..items import Assignment7ScrappyItem
 
 def staticNum():
