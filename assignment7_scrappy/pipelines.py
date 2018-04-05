@@ -17,10 +17,16 @@ class Assignment7ScrappyPipeline(ImagesPipeline):
 		return 'thumbs/%s/%s.jpg' % (thumb_id, image_guid)
 
 	def file_path(self, request, response=None, info=None):
-		# item=request.meta['item'] # Like this you can use all from item, not just url.
-		return 'product%s.jpg' % (request.meta.get('filename', ''))
+		return request.meta.get('filename', '')
 
 	def get_media_requests(self, item, info):
-		meta = {'filename': item['product_id']}
+		meta = {'filename': item['image_paths']}
 		for image_url in item['image_urls']:
 			yield scrapy.Request(url=image_url, meta = meta)
+
+	def item_completed(self, results, item, info):
+		image_paths = [x['path'] for ok, x in results if ok]
+		if not image_paths:
+			raise DropItem("Item contains no images")
+			item['image_paths'] = image_paths
+			return item

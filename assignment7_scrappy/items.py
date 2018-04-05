@@ -9,7 +9,7 @@ import scrapy
 
 
 class Assignment7ScrappyItem(scrapy.Item):
-    product_id = scrapy.Field()
     image_urls = scrapy.Field()
+    image_paths = scrapy.Field()
 
 
