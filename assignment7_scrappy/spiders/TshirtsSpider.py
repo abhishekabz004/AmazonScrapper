@@ -77,7 +77,7 @@ class TshirtsspiderSpider(scrapy.Spider):
 		next_page = response.css('span.pagnLink')[1]
 		next_page = next_page.css('a::attr(href)').extract_first()
 		pgNo= staticPage()
-		if pgNo<1:
+		if pgNo<7:
 			if pgNo == 1:
 				next_page = response.css('span.pagnLink')[0]
 			elif pgNo == 2:
