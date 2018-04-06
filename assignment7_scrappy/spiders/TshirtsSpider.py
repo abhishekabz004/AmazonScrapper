@@ -7,16 +7,22 @@ import hashlib
 from ..items import Assignment7ScrappyItem
 
 import csv
+import os
 
 class csvWriter():
-	def __init__(self):
-		with open('result.csv', 'w') as csvfile:
-			self.fieldname = ['Id', 'Name', 'ImageUrl', 'ProductUrl', 'Review', 'Cost', 'Category', 'SuperCategory', 'ImagePath']
-			self.writer = csv.DictWriter(csvfile, fieldnames=self.fieldname)
-			self.writer.writeheader()
+	def initiate(self,path):
+		filePath = path
+		method = "w"
+		if not os.path.exists(os.path.dirname(filePath)):
+			os.makedirs(os.path.dirname(filePath))
+			with open(filePath+"result.csv", method) as csvfile:
+				self.fieldname = ['Id', 'Name', 'ImageUrl', 'ProductUrl', 'Review', 'Cost', 'Category', 'SuperCategory', 'ImagePath']
+				self.writer = csv.DictWriter(csvfile, fieldnames=self.fieldname)
+				self.writer.writeheader()
 
 	def write(self, pId, name, imgUrl, pUrl, review, cost, cat, supCat, imgPath):
-		with open('result.csv', 'a') as csvfile:
+		filePath = supCat.replace(":","/")+cat+"/result.csv"
+		with open(filePath , 'a') as csvfile:
 			self.fieldname = ['Id', 'Name', 'ImageUrl', 'ProductUrl', 'Review', 'Cost', 'Category', 'SuperCategory', 'ImagePath']
 			self.writer = csv.DictWriter(csvfile, fieldnames=self.fieldname)
 			self.writer.writerow({'Id': pId, 'Name': name, 'ImageUrl': imgUrl, 'ProductUrl': pUrl, 'Review':review, 'Cost': cost, 'Category': cat, 'SuperCategory': supCat, 'ImagePath': imgPath})
@@ -49,6 +55,7 @@ class TshirtsspiderSpider(scrapy.Spider):
 			superCat += catName+":"
 		superCat = superCat.replace("\n","")
 		superCat = superCat.replace(" ","")
+		csvObj.initiate(superCat.replace(":","/")+category+"/")
 
 		for product in response.css('li.s-result-item'):
 			image_url = product.css('img.s-access-image.cfMarker::attr(src)').extract_first()
