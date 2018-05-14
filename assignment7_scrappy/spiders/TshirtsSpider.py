@@ -94,6 +94,6 @@ class TshirtsspiderSpider(scrapy.Spider):
 
 		next_page = response.css('a.pagnNext::attr(href)').extract_first()
 		curPg = int(self.findBetween(next_page, "page=", "&rh="))
-		if curPg<=1:
+		if curPg<=100:
 			if next_page is not None:
 				yield response.follow(next_page, callback=self.parse)
