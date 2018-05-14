@@ -1,11 +1,6 @@
 # AmazonScrapper
 Scrapes product details from ecommerse site Amazon. On average this crawler gets about 5000 dataset for each product category defined in our taxonomy.
 
-```
-git status
-git add
-git commit
-```
 ## How is it done?
 - The defined taxonomy is formed as a map(**"Amazon_Map.csv"**) with respect to this website and thus categories when fetched would be converted according to our system's definition. 
 - For instance, when a product is found to be belonging under the category**Clothing&Accessories:Men:T-Shirts&Polos** when fetched  will be converted into **Men>Topwear>Casual>Tshirts&Polos**.
